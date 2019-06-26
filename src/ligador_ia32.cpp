@@ -4,3 +4,6 @@ Saida:   executavel .elf
 Obs.: usar biblioteca ELFIO para gerar o executavel
 Traduzir somente as instruções usadas no tradutor
 */
+
+#include "ligador_ia32.hpp"
+
