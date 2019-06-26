@@ -5,10 +5,15 @@ Obs.: Tradução só contem seção .DATA e .TEXT, variaveis não inicializadas 
 Assembly inventado possui novas instruções:
 C_INPUT, C_OUTPUT, S_INPUT, S_OUTPUT, H_INPUT, H_OUTPUT
 As instruções INPUT, OUTPUT e as instruções acima devem ter funções em IA32 pré-prontas, a tradução será um Call
+Toda função retorna o numero de caracteres lidos/escritos em AX
 Todas as instruções devem ser traduzidas para 32 bits
 */
 
-#include "tradutor.hpp"
+#include "inc/tradutor.hpp"
+
+int main(){
+
+}
 
 
 
