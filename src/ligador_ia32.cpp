@@ -7,6 +7,6 @@ Traduzir somente as instruções usadas no tradutor
 
 #include "inc/ligador_ia32.hpp"
 
-int main(){
+int main(int argc, char const *argv[]){
 
 }
