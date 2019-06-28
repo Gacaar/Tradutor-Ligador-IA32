@@ -2,7 +2,7 @@
 #define PRE_PROCESSADOR_HPP
 
 #include <iostream>
-#include "inc/utils.hpp"
+#include "../inc/utils.hpp"
 #include <string>
 
 //Nome, numero de argumentos e definicao da macro

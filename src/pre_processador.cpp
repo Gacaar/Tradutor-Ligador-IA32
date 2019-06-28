@@ -9,10 +9,10 @@ Erros detectados (somente relacionados com diretivas de pre processamento):
 -- Rotulo nao definido (todo IF deve ter um EQU antes)
 -- Rotulo repetido
 -- Diretiva sem argumento
--- Diretiva com argumento invalido
+-- Diretiva com argumento invalido'
 */
 
-#include "pre_processador.hpp"
+#include "../inc/pre_processador.hpp"
 
 MNDT novaMacro(string simbolo, int valor, string def){
     MNDT macro;
