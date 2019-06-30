@@ -1,4 +1,4 @@
-#include "utils.hpp"
+#include "../inc/utils.hpp"
 
 list<TI> inicializarTI(){
     list<TI> tabelaDeInstrucoes;

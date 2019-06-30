@@ -25,23 +25,24 @@ int main(int argc, char const *argv[]){
     ifstream fr(fileIn+".pre");
 	ofstream fw(fileIn+".s");
 
-    while(!getline(fr,line)){
+    while(getline(fr,line)){
         split(line,tokens);
         
         if(line == "SECTION TEXT"){
-
+            fw << "section .text\n";
         }
         else if(line == "SECTION DATA"){
-
+            fw << "section .data\n";
         }
         else if(tokens[0] == "ADD"){
-
+            fw << "add dword [ebx], " << tokens[1] << "\n";    
         }
         else if(tokens[0] == "SUB"){
-            
+            fw << "sub dword [ebx], " << tokens[1] << "\n";  
         }
         else if(tokens[0] == "MULT"){
-            
+            fw << "mv dword [ebx], " << tokens[1] << "\n";
+            fw << "imul dword [ebx]\n";  
         }
         else if(tokens[0] == "DIV"){
             
