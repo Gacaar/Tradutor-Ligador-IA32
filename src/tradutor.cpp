@@ -66,18 +66,18 @@ void swapLine(string line, bool *section, vector<string> tokens){
         }else if(line == "SECTION DATA"){
             *section = 1;
         }else if(tokens[0] == "ADD"){
-            sectionText << "add dword ebx, " << tokens[1] << endl;   
+            sectionText << "add dword ebx, [" << tokens[1] << "]" << endl;   
         }
         else if(tokens[0] == "SUB"){
-            sectionText << "sub dword ebx, " << tokens[1] << endl;  
+            sectionText << "sub dword ebx, [" << tokens[1] << "]" << endl;  
         }
         else if(tokens[0] == "MULT"){
-            sectionText << "mv dword ebx, " << tokens[1] << endl;
+            sectionText << "mv dword ebx, [" << tokens[1] << "]" << endl;
             sectionText << "imul dword ebx\n";  
             sectionText << "mv dword ebx, eax\n";
         }
         else if(tokens[0] == "DIV"){
-            sectionText << "mv dword ebx, " << tokens[1] << endl;
+            sectionText << "mv dword ebx, [" << tokens[1] << "]" << endl;
             sectionText << "imul dword ebx\n";
             sectionText << "mv dword ebx, eax\n"; 
         }
@@ -98,26 +98,26 @@ void swapLine(string line, bool *section, vector<string> tokens){
         }
         else if(tokens[0] == "COPY"){
             if(tokens.size() == 4){
-                sectionText << "mv dword " << tokens[2] << ", " << tokens[1].substr(0, tokens[1].size()-1) << endl;
+                sectionText << "mv dword [" << tokens[2] << "], [" << tokens[1].substr(0, tokens[1].size()-1) << "]" << endl;
             }else if(tokens.size() == 6){
                 if(tokens[2] == "+"){
-                    sectionText << "mv dword ecx, " << tokens[3].substr(0, tokens[3].size()-1) << endl;
-                    sectionText << "mv dword " << tokens[4] << ", [" << tokens[1] << " + ecx*4]" << endl;
+                    sectionText << "mv dword ecx, [" << tokens[3].substr(0, tokens[3].size()-1) << "]" << endl;
+                    sectionText << "mv dword [" << tokens[4] << "], [" << tokens[1] << " + ecx*4]" << endl;
                 }else{
-                    sectionText << "mv dword ecx, " << tokens[4] << endl;
-                    sectionText << "mv dword [" << tokens[2] << " + ecx*4], " << tokens[1].substr(0, tokens[1].size()-1) << endl;
+                    sectionText << "mv dword ecx, [" << tokens[4] << "]" << endl;
+                    sectionText << "mv dword [" << tokens[2] << " + ecx*4], [" << tokens[1].substr(0, tokens[1].size()-1) << "]" << endl;
                 }
             }else if(tokens.size() == 8){
-                sectionText << "mv dword ecx, " << tokens[3].substr(0, tokens[3].size()-1) << endl;
-                sectionText << "mv dword edx, " << tokens[6] << endl;
+                sectionText << "mv dword ecx, [" << tokens[3].substr(0, tokens[3].size()-1) << "]" << endl;
+                sectionText << "mv dword edx, [" << tokens[6] << "]" << endl;
                 sectionText << "mv dword [" << tokens[4] << " + edx*4], [" << tokens[1] << " + ecx*4]" << endl;
             }
         }
         else if(tokens[0] == "LOAD"){
-            sectionText << "mv dword ebx, " << tokens[1] << "\n";
+            sectionText << "mv dword ebx, [" << tokens[1] << "]\n";
         }
         else if(tokens[0] == "STORE"){
-            sectionText << "mv dword "<< tokens[1] << ", ebx" << "\n";
+            sectionText << "mv dword ["<< tokens[1] << "], ebx" << "\n";
         }
         else if(tokens[0] == "INPUT"){
             
