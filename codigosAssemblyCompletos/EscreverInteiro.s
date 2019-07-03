@@ -1,49 +1,42 @@
 ;Funcao de escrita de inteiros em complemento de 2
-;Argumentos: Endereco para ler a String [EBP+8] e numero de caracteres para escrever [EBP+12]
+;Argumentos: Inteiro a ser escrito [EBP+8]
 ;Retorno: Quantidade de caracteres escritos em EAX
-num equ 13
 section .data
-    mem db 'Hello World!',0Ah
+    intWrite db '          '
 
 section .text
 
-;Inicio da funcao
-EscreverString:
-enter 0,0
+;Inico da funcao:
 
-mov ebx, [EBP+8]
-mov ecx, [EBP+12]
-mov eax, 0
+;Verifica se o numero eh negativo
+mov eax, [EBP+8]
+cmp byte[EBP+8], 0
+jne POSITIVO
+dec eax
+neg eax
+ 
+POSITIVO:
 
-escrStr:
-cmp byte[ebx+eax], 0Ah
-je fim
-inc eax
-loop escrStr
-dec eax ;Decrementa se nao encontrar enter (que eh contado em seguida)
-fim:
-inc eax ;Inclui o enter caso ache ele
+;Transforma em ascii
+mov ebx, 0 ;Posicao na string convertida
+mov edx, 0 ;Recebe o resto da divisao
 
-mov edx, eax
-mov eax, 4
-mov ebx, 1
-mov ecx, [EBP+8]
-int 80h
 
-leave
-ret 8
+
+;edx
+
+;Acrescenta o sinal se for negativo
+
+;Imprime na tela
+
+
 ;Fim da funcao
+
 
 global _start
 _start: 
 
-;Inicio do trecho que deve ser traduzido
-push dword num  ;num eh o numero de caracteres a serem escritos
-push mem        ;mem eh a label com o endereco onde a string esta salva
-call EscreverString
+;Inicio do trecho que deve ser traduzido, le inteiro e coloca na posicao de memoria 'mem'
+push eax
+call EscreverInteiro
 ;Fim da traducao
-
-;encerra
-mov eax, 1
-mov ebx, 0
-int 80h
