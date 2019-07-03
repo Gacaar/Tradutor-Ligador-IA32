@@ -120,7 +120,11 @@ void swapLine(string line, bool *section, vector<string> tokens){
             sectionText << "mv dword ["<< tokens[1] << "], ebx" << "\n";
         }
         else if(tokens[0] == "INPUT"){
-            
+            sectionText << "push eax" << endl;
+            sectionText << "call LeerInteiro" << endl;
+            sectionText << "pop eax" << endl;
+            sectionText << "mov [" << tokens[1] << "],eax" << endl;
+            writeFunc("LeerInteiro.s");
         }
         else if(tokens[0] == "OUTPUT"){
             
@@ -139,21 +143,33 @@ void swapLine(string line, bool *section, vector<string> tokens){
             writeFunc("EscreverChar.s");
         }
         else if(tokens[0] == "H_INPUT"){
-            
+            sectionText << "push eax" << endl;
+            sectionText << "call LeerHex" << endl;
+            sectionText << "pop eax" << endl;
+            sectionText << "mov [" << tokens[1] << "],eax" << endl;
+            writeFunc("LeerHex.s");
         }
         else if(tokens[0] == "H_OUTPUT"){
             
         }
         else if(tokens[0] == "S_INPUT"){
-            
+            sectionText << "mov eax, " << tokens[2] << endl;
+            sectionText << "push eax" << endl;
+            sectionText << "push [" << tokens[1] << "]" << endl;
+            sectionText << "call LeerString" << endl;
+            writeFunc("LeerString.s");
         }
         else if(tokens[0] == "S_OUTPUT"){
-            
+            sectionText << "mov eax, " << tokens[2] << endl;
+            sectionText << "push eax" << endl;
+            sectionText << "push [" << tokens[1] << "]" << endl;
+            sectionText << "call EscreveString" << endl;
+            writeFunc("EscreveString.s");
         }
         else if(tokens[0] == "STOP"){
-            sectionData << "mov eax, 1" << endl;
-            sectionData << "mov ebx, 0" << endl;
-            sectionData << "int 80h" << endl;
+            sectionText << "mov eax, 1" << endl;
+            sectionText << "mov ebx, 0" << endl;
+            sectionText << "int 80h" << endl;
         }else if(*section){
             if(tokens[1] == "SPACE"){
                 sectionData << tokens[0].substr(0, tokens[0].length() - 1) << " db";

@@ -9,7 +9,7 @@ section .data
 section .text
 
 ;Inicio da funcao
-LeerString:
+LeerInteiro:
 enter 0,0
 
 ;Le ate 11 caracteres (2^31 tem ateh 10 + 1 de sinal)
@@ -61,7 +61,7 @@ _start:
 
 ;Inicio do trecho que deve ser traduzido, le string e coloca na posicao de memoria 'mem'
 push eax
-call LeerString
+call LeerInteiro
 pop eax
 mov [mem], eax
 ;Fim da traducao
