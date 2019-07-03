@@ -17,11 +17,11 @@ mov eax, 0
 
 escrStr:
 cmp byte[ebx+eax], 0Ah
-je fim
+je fimEscreverString
 inc eax
 loop escrStr
 dec eax ;Decrementa se nao encontrar enter (que eh contado em seguida)
-fim:
+fimEscreverString:
 inc eax ;Inclui o enter caso ache ele
 
 mov edx, eax

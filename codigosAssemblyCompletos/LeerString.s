@@ -24,11 +24,11 @@ mov eax, 0
 leitStr:
 ;Encerra se for enter
 cmp byte[ebx+eax], 0Ah
-je fim
+je fimLerString
 inc eax
 loop leitStr
 dec eax ;Nao inclui o enter se nao achar (eh incluido em seguida)
-fim:
+fimLerString:
 inc eax ;Inclui o enter se encontra-lo
 leave
 ret 8
