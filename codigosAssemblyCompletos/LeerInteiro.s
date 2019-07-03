@@ -20,9 +20,9 @@ int 80h
 
 mov eax, 0
 cmp byte[intLido], '-'
-jne POSITIVO
+jne pLeInt
 inc eax
-POSITIVO:
+pLeInt:
 mov edx, 0  ;inteiro
 mov ecx, 10  ;num de caracteres
 mov ebx, intLido
@@ -50,10 +50,10 @@ fimLerInteiro:
 ;Se eax+ecx=10 significa que o numero eh positivo (pq comecou da posicao 0)
 add eax, ecx
 cmp eax, 10 ;O primeiro nao era "-"
-je POSITIVO2
+je pLeInt2
 neg edx
 inc edx
-POSITIVO2:
+pLeInt2:
 mov [EBP+8], edx
 leave
 ret
