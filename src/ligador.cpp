@@ -53,13 +53,13 @@ void createElf(char *text, char *data){
     char descr[6] = {0x31, 0x32, 0x33, 0x34, 0x35, 0x36};
     note_writer.add_note( 0x01, "Never easier!", descr, sizeof( descr ) );
 
-    writer.set_entry( 0x08048000 );
+    writer.set_entry( 0x08049000 );
 
     writer.save( "hello_i386_32" );
 }
 
 int main(int argc, char const *argv[]){
-    std::string filename = argv[1];
+    // std::string filename = argv[1];
 
     char text[] = { '\xB8', '\x04', '\x00', '\x00', '\x00',   // mov eax, 4		      
                     '\xBB', '\x01', '\x00', '\x00', '\x00',   // mov ebx, 1		      
