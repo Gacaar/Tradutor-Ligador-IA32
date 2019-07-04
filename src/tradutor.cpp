@@ -150,7 +150,10 @@ void swapLine(string line, bool *section, vector<string> tokens){
             writeFunc("LeerHex.s");
         }
         else if(tokens[0] == "H_OUTPUT"){
-            
+            sectionText << "mov eax, [" << tokens[1] << "]" << endl;
+            sectionText << "push eax" << endl;
+            sectionText << "call EscreveHex" << endl;
+            writeFunc("EscreverHex.s");
         }
         else if(tokens[0] == "S_INPUT"){
             sectionText << "mov eax, " << tokens[2] << endl;

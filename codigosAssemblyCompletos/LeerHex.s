@@ -4,7 +4,7 @@
 section .data
     mem db ' '
     intLido db ' '
-    T db '111'
+    T db '11111111111'
 
 section .text
 
@@ -64,6 +64,7 @@ mov edi, 16
 mul edi
 mov edx, eax
 inc si
+inc ebx
 jmp sum
 
 aHex:
